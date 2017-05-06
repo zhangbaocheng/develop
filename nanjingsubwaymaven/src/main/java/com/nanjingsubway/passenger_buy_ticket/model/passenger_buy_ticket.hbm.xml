@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.nanjingsubway.passenger_buy_ticket.model.PassengerBuyTicket" table="passenger_buy_ticket">
+		<id name="buyTicketId" type="java.lang.Integer" length="11">
+			<column name="buy_ticket_id"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="startPlace" type="java.lang.String" length="255">
+			<column name="start_place"></column>
+		</property>
+		<property name="endPlace" type="java.lang.String" length="255">
+			<column name="end_lace"></column>
+		</property>
+		<property name="price" type="java.lang.String" length="255">
+			<column name="price"></column>
+		</property>
+		<property name="buyDate" type="java.util.Date">
+			<column name="buy_date"></column>
+		</property>
+		<property name="passengerId" type="java.lang.Integer" length="255">
+			<column name="passenger_id"></column>
+		</property>
+		<property name="startTime" type="java.util.Date" length="255">
+			<column name="start_time"></column>
+		</property>
+	</class>
+</hibernate-mapping>

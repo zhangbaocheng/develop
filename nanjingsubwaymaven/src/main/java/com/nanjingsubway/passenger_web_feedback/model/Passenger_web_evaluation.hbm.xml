@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.nanjingsubway.passenger_web_feedback.model.PassengerWebFeedback" table="passenger_web_feedback">
+		<id name="webFeedbackId" type="java.lang.Integer" length="11">
+			<column name="web_feedback_id"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="passengerId" type="java.lang.Integer" length="11">
+			<column name="passenger_id"></column>
+		</property>
+		<property name="feedbackType" type="java.lang.String" length="255">
+			<column name="feedback_type"></column>
+		</property>
+		<property name="feedbackContent" type="java.lang.String" length="255">
+			<column name="feedback_content"></column>
+		</property>
+	</class>
+</hibernate-mapping>

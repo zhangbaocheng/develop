@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="com.nanjingsubway.subway_line2.model.SubwayLine2" table="subway_line2">
+		<id name="siteId" type="java.lang.Integer" length="11">
+			<column name="site_id"></column>
+			<generator class="increment"></generator>
+		</id>
+		<property name="siteNumber" type="java.lang.Integer" length="11">
+			<column name="site_number"></column>
+		</property>
+		<property name="siteName" type="java.lang.String" length="255">
+			<column name="site_name"></column>
+		</property>
+		<property name="siteDetails" type="java.lang.String" length="255">
+			<column name="site_details"></column>
+		</property>
+		<property name="transfered" type="java.lang.String" length="255">
+			<column name="transfered"></column>
+		</property>
+		<property name="transferedLines" type="java.lang.String" length="255">
+			<column name="transfered_lines"></column>
+		</property>
+		<property name="recharged" type="java.lang.String" length="255">
+			<column name="recharged"></column>
+		</property>
+		<property name="toilet" type="java.lang.String" length="255">
+			<column name="toilet"></column>
+		</property>
+	</class>
+</hibernate-mapping>

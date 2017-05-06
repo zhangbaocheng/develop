@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nanjingsubway.subway_lines.dao.SubwayLinesDao">
+	<resultMap id="SubwayLineSiteMap" autoMapping="true" type="SubwayLineSite">
+			<id column="site_id" property="siteId"/>
+			<result column="id_number" property="idNumber"/>
+			<result column="site_number" property="siteNumber"/>
+			<result column="line_number" property="lineNumber"/>
+			<result column="site_name" property="siteName"/>
+			<result column="site_details" property="siteDetails"/>
+			<result column="transfered" property="transfered"/>
+			<result column="transfered_lines" property="transferedLines"/>
+			<result column="recharged" property="recharged"/>
+			<result column="toilet" property="toilet"/>
+	</resultMap>
+	
+	
+	<select id="findLines" resultType="java.lang.String" parameterType="java.lang.String">
+		select lines_pass_by from transfered_lines 
+			where line_other='${lineStart}' and line_another='${lineEnd}'
+			or
+				line_other='${lineEnd}' and line_another='${lineStart}'
+	</select>
+	
+	<select id="findLineBySite" parameterType="java.lang.String" resultType="java.lang.String">
+		select line_number from view_subway_lines where site_name = '${site}'
+	</select>
+	
+	<select id="findSiteBySiteName" parameterType="java.lang.String" resultMap="SubwayLineSiteMap">
+		select * from view_subway_lines 
+			where site_name = '${siteName}'
+			and line_number = '${lineNumber}'
+	</select>
+	
+	<select id="findSiteAtSameLinePassBy" parameterType="java.util.Map" resultMap="SubwayLineSiteMap">
+		select * from view_subway_lines
+			where
+				line_number = '${lineNumber}'
+			and 
+				site_number BETWEEN ${smallNumber} and ${bigNumber}
+				order by site_number ${sort}
+	</select>
+	
+	<select id="findSiteByLineAndTransferedLine" parameterType="java.lang.String" resultMap="SubwayLineSiteMap">
+		select * from view_subway_lines 
+			where line_number='${lineNumber}' 
+				and transfered_lines like '%${transfered_line}%';
+	</select>
+	
+</mapper>

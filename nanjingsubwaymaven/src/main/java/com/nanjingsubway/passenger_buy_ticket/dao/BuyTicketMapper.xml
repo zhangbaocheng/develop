@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nanjingsubway.passenger_buy_ticket.dao.BuyTicketDao">
+	<resultMap id="buyTicketMap" autoMapping="true" type="PassengerBuyTicket">
+		<id column="buy_ticket_id" property="buyTicketId"/>
+		<result column="start_place" property="startPlace"/>
+		<result column="end_place" property="endPlace"/>
+		<result column="price" property="price"/>
+		<result column="buy_date" property="buyDate"/>
+		<result column="passenger_id" property="passengerId"/>
+		<result column="start_time" property="startTime"/>
+		<result column="is_evaluation" property="isEvaluation"/>
+		<result column="lines_pass_by" property="linesPassBy"/>
+		<result column="sites_number_pass_by" property="sitesNumberPassBy"/>
+	</resultMap>
+	
+	<resultMap id="PassengerAccountMap" autoMapping="true" type="PassengerAccount">
+		<id column="passenger_account_id" property="passengerAccountId"/>
+		<result column="passenger_account_money" property="passengerAccountMoney"/>
+		<result column="passenger_id" property="passengerId"/>
+	</resultMap>
+	<resultMap type="com.nanjingsubway.passenger_buy_ticket.model.PassengerEvaluation" id="passengerEvaluationMapper">
+		<id column="id" property="id"/>
+		<result column="passenger_id" property="passengerId"/>
+		<result column="buy_ticket_id" property="buyTicketId"/>
+		<result column="evaluation_stars" property="evaluationStars"/>
+		<result column="evaluation_content" property="evaluationContent"/>
+	</resultMap>
+	
+	<insert id="buyTicket" parameterType="java.util.Map">
+		insert into passenger_buy_ticket(
+							start_place,
+							end_place,
+							price,
+							buy_date,
+							passenger_id,
+							start_time,
+							is_used,
+							lines_pass_by,
+							sites_number_pass_by)
+					VALUES(
+						'${startPlace}',
+						'${endPlace}',
+						'${price}',
+						#{buyDate,jdbcType=DATE},
+						${passengerId},
+						#{startTime,jdbcType=DATE},
+						'${isUsed}',
+						'${linesPassBy}',
+						'${sitesNumberPassBy}'
+					)
+	</insert>
+	
+	<select id="selectAccountMoneyByPassenger" resultMap="PassengerAccountMap" parameterType="java.lang.Integer">
+		select * from passenger_account where passenger_id = ${passengerId};
+	</select>
+	
+	<insert id="insertAccountByPassenger" parameterType="java.lang.Integer">
+		insert into passenger_account(passenger_id,passenger_account_money) values(${passengerId},0);
+	</insert>
+	
+	<update id="recharge" parameterType="java.lang.Object">
+		update passenger_account 
+			SET passenger_account_money=passenger_account_money+#{rechargeMoney}
+			where passenger_id=#{passengerId}
+	</update>
+	
+	
+	<update id="buyTicketReduceMoney" parameterType="java.lang.Object">
+		UPDATE passenger_account 
+			SET passenger_account_money=passenger_account_money-#{price}
+			WHERE passenger_id=#{passengetId}
+	</update>
+	
+	<select id="buyTicketHistory" parameterType="java.lang.Integer" resultMap="buyTicketMap">
+		select * from passenger_buy_ticket
+			WHERE passenger_id = #{passengerId}
+			order by buy_date desc;
+	</select>
+	
+	<insert id="evaluation" parameterType="java.util.Map">
+		INSERT INTO passenger_evaluation
+				(passenger_id,buy_ticket_id,evaluation_stars,evaluation_content)
+			VALUES(
+				#{passengerId},
+				#{buyTicketId},
+				#{evaluationStars},
+				#{evaluationContent}
+			)
+	</insert>
+	
+	<select id="queryBuyTicketById" resultMap="buyTicketMap" parameterType="java.lang.Integer">
+		SELECT * FROM passenger_buy_ticket
+		 WHERE buy_ticket_id=#{buyTicketId}
+	</select>
+	
+	<update id="updateBuyTicketEvaluation">
+		UPDATE passenger_buy_ticket
+			SET is_evaluation=#{isEvaluation}
+			WHERE buy_ticket_id=#{buyTicketId}
+	</update>
+	
+</mapper>
