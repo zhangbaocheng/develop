@@ -68,4 +68,12 @@ public class BuyTicketService {
 		int result = buyTicketDao.updateBuyTicketEvaluation(NanjingSubwayUtils.convertObjToMap(passengerBuyTicket));
 		return result;
 	}
+	
+	public PassengerEvaluation showEvaluationContent(String buyTicketId){
+		return buyTicketDao.showEvaluationContent(buyTicketId);
+	}
+	
+	public int buyAgain(PassengerBuyTicket passengerBuyTicket){
+		return buyTicketDao.buyAgain(passengerBuyTicket);
+	}
 }

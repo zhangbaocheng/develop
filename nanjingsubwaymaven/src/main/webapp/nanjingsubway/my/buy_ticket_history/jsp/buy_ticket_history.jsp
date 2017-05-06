@@ -11,6 +11,8 @@
 	<%@include file="./show_evaluation.jsp" %>
 	<%@include file="./evaluation_success.jsp" %>
 	<%@include file="./evaluation_fail.jsp" %>
+	<%@include file="./buy_ticket_again_success.jsp" %>
+	
 	<div id="show_buy_history" style="width:80%;height:100%;margin:0 auto;"></div>
 	
 </body>

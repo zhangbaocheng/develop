@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nanjingsubway.passenger.model.Passenger;
+import com.nanjingsubway.passenger_buy_ticket.dao.BuyTicketDao;
 import com.nanjingsubway.passenger_buy_ticket.model.PassengerAccount;
 import com.nanjingsubway.passenger_buy_ticket.model.PassengerBuyTicket;
 import com.nanjingsubway.passenger_buy_ticket.model.PassengerEvaluation;
@@ -21,7 +22,10 @@ import com.nanjingsubway.passenger_buy_ticket.service.BuyTicketService;
 @RequestMapping("buyTicket")
 public class BuyTicketController {
 	@Autowired
-	private BuyTicketService buyticketService;
+	private BuyTicketService buyticketService = null;
+	
+	@Autowired
+	BuyTicketDao buyTicketDao = null;
 	
 	@RequestMapping("buy")
 	@ResponseBody
@@ -85,6 +89,26 @@ public class BuyTicketController {
 		Passenger passenger = (Passenger) request.getSession().getAttribute("loginUser");
 		passengerEvaluation.setPassengerId(passenger.getPassengerId());
 		int result = buyticketService.evaluation(passengerEvaluation);
+		if(result > 0){
+			return "success";
+		}
+		else{
+			return "error";
+		}
+	}
+	
+	@RequestMapping("showEvaluationContent")
+	@ResponseBody
+	public PassengerEvaluation showEvaluationContent(String buyTicketId){
+		return buyticketService.showEvaluationContent(buyTicketId);
+	}
+	
+	@RequestMapping("buyAgain")
+	@ResponseBody
+	public String buyAgain(Integer buyTicketId){
+		PassengerBuyTicket passengerBuyTicket = buyTicketDao.queryBuyTicketById(buyTicketId);
+		passengerBuyTicket.setIsEvaluation("n");
+		int result = buyticketService.buyAgain(passengerBuyTicket);
 		if(result > 0){
 			return "success";
 		}

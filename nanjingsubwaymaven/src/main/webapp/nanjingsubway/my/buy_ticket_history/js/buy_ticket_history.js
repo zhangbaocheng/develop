@@ -39,7 +39,7 @@ $(function(){
 								}
 							}
 							if(message[i].isEvaluation == 'n'){
-								str = str + '<td><button class="btn btn-info btn-sm" onclick="evaluation('+message[i].buyTicketId+')">评价</button>';
+								str = str + '<td><button class="btn btn-info btn-sm" onclick="evaluation('+message[i].buyTicketId+')">乘车评价</button>';
 							}
 							else{
 								str = str + '<td><button class="btn btn-info btn-sm" onclick="showEvaluationContent('+message[i].buyTicketId+')">查看评价</button>';
@@ -72,7 +72,7 @@ $(function(){
 		var evaluationObj = {
 				buyTicketId:$('#evaluationBuyTiekct').val(),
 				evaluationStars:$('#evaluation_stars').val(),
-				evaluationContent:$('#evaluation_stars').val()
+				evaluationContent:$('#evaluation_content').val()
 		}
 		$.ajax({
 			type:'POST',
@@ -95,6 +95,9 @@ $(function(){
 		$('body').oneTime(500,function(){
 			$('#show_body_content').load('nanjingsubway/my/buy_ticket_history/jsp/buy_ticket_history.jsp');
 		});
+	});
+	$('#show_evaluation_cancel').click(function(){
+		$('#showEvaluationModal').modal('hide');
 	});
 //	$('#evaluationSuccessModal').on('hide.bs.modal', function () {
 //		$('#buy_ticket_history').trigger('click');
@@ -126,8 +129,40 @@ function evaluation(buyTicketId){
 //再次购买
 function buyAgain(buyTicketId){
 	console.log('再次购买：'+buyTicketId);
+	$.ajax({
+		type:'GET',
+		url:getRootPath() + '/buyTicket/buyAgain?buyTicketId='+buyTicketId,
+		success:function(response){
+			if(response == "success"){
+				console.log('购买成功');
+				$('#buyTicketAgainSuccessModal').modal('show');
+				
+			}
+		}
+	});
+	
 }
 //查看评价内容
 function showEvaluationContent(buyTicketId){
 	console.log('查看评价内容：'+buyTicketId);
+	$.ajax({
+		type:'GET',
+		url:getRootPath() + '/buyTicket/showEvaluationContent?buyTicketId='+buyTicketId,
+		success:function(passengerEvaluation){
+			$('#evaluation_stars').val(passengerEvaluation.evaluationStars);
+			$('#show_evaluation_ensure').hide();
+			$('#show_evaluation_cancel').html('确定');
+			$('#evaluation_stars').attr('disabled','true');
+			$('#evaluation_content').attr('readonly','true');
+			$('#evaluation_content').val(passengerEvaluation.evaluationContent);
+			$('#showEvaluationModal').modal('show');
+		}
+	});
 }
+//再次购票成功模态框点击确定
+$('#buy_ticket_again_success_ensure').click(function(){
+	$('#buyTicketAgainSuccessModal').modal('hide');
+	$('body').oneTime(500,function(){
+		$('#show_body_content').load('nanjingsubway/my/buy_ticket_history/jsp/buy_ticket_history.jsp');
+	});
+});

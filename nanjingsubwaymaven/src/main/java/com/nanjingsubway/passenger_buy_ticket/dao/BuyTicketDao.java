@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.nanjingsubway.passenger_buy_ticket.model.PassengerAccount;
 import com.nanjingsubway.passenger_buy_ticket.model.PassengerBuyTicket;
+import com.nanjingsubway.passenger_buy_ticket.model.PassengerEvaluation;
 
 public interface BuyTicketDao {
 	int buyTicket(Map<String, Object> paramMap);
@@ -21,4 +22,8 @@ public interface BuyTicketDao {
 	PassengerBuyTicket queryBuyTicketById(@Param("buyTicketId") Integer buyTicketId);
 	
 	int updateBuyTicketEvaluation(Map<String, Object> paramMap);
+	
+	PassengerEvaluation showEvaluationContent(@Param("buyTicketId") String buyTicketId);
+	
+	int buyAgain(@Param("passengerBuyTicket")PassengerBuyTicket passengerBuyTicket);
 }

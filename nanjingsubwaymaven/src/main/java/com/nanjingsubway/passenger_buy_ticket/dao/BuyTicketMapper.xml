@@ -36,7 +36,7 @@
 							buy_date,
 							passenger_id,
 							start_time,
-							is_used,
+							is_evaluation,
 							lines_pass_by,
 							sites_number_pass_by)
 					VALUES(
@@ -46,7 +46,7 @@
 						#{buyDate,jdbcType=DATE},
 						${passengerId},
 						#{startTime,jdbcType=DATE},
-						'${isUsed}',
+						'${isEvaluation}',
 						'${linesPassBy}',
 						'${sitesNumberPassBy}'
 					)
@@ -100,5 +100,34 @@
 			SET is_evaluation=#{isEvaluation}
 			WHERE buy_ticket_id=#{buyTicketId}
 	</update>
+	
+	<select id="showEvaluationContent" resultMap="passengerEvaluationMapper" parameterType="java.lang.String">
+		SELECT * from passenger_evaluation
+		where buy_ticket_id=#{buyTicketId}
+	</select>
+	
+	<insert id="buyAgain" parameterType="com.nanjingsubway.passenger_buy_ticket.model.PassengerBuyTicket">
+		insert into passenger_buy_ticket(
+							start_place,
+							end_place,
+							price,
+							buy_date,
+							passenger_id,
+							start_time,
+							is_evaluation,
+							lines_pass_by,
+							sites_number_pass_by)
+					VALUES(
+						'${passengerBuyTicket.startPlace}',
+						'${passengerBuyTicket.endPlace}',
+						'${passengerBuyTicket.price}',
+						#{passengerBuyTicket.buyDate,jdbcType=DATE},
+						${passengerBuyTicket.passengerId},
+						#{passengerBuyTicket.startTime,jdbcType=DATE},
+						'${passengerBuyTicket.isEvaluation}',
+						'${passengerBuyTicket.linesPassBy}',
+						'${passengerBuyTicket.sitesNumberPassBy}'
+					)
+	</insert>
 	
 </mapper>
