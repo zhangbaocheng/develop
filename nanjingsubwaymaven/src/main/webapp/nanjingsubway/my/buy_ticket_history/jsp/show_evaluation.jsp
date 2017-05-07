@@ -31,7 +31,7 @@
 								<div class="form-group has-feedback">
 									<label class="col-sm-3 control-label">评价内容：</label>
 										<div class="col-sm-7">
-										<textarea class="form-control" rows="3" id="evaluation_content"></textarea>
+										<textarea class="form-control" rows="3" id="evaluation_content" placeholder="好评！"></textarea>
 										</div>
 								</div>
 							</form>

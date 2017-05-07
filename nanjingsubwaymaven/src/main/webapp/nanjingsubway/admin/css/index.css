@@ -1,0 +1,21 @@
+#top{
+    width:100%;
+    height:100px;
+    background-color: #eeeeee;
+    /*height:100%;*/
+}
+#left{
+    float: left;
+    width:200px;
+    height:100%;
+    padding:5px;
+    background-color:#dddddd;
+}
+#content{
+    width: 100%;
+    background-color:#cccccc;
+    height:100%;
+}
+.admin-manage{
+    display: block;
+}

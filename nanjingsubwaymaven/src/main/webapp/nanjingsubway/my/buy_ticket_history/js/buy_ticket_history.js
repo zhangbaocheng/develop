@@ -68,11 +68,15 @@ $(function(){
 	$('#remind_user_not_login_cancel').click(function(){
 		$('#remindUserNotLoginModal').modal('hide');
 	});
+	//点击评价确认按钮
 	$('#show_evaluation_ensure').on('click',function(){
 		var evaluationObj = {
 				buyTicketId:$('#evaluationBuyTiekct').val(),
 				evaluationStars:$('#evaluation_stars').val(),
 				evaluationContent:$('#evaluation_content').val()
+		}
+		if(evaluationObj.evaluationContent==''){
+			evaluationObj.evaluationContent = '好评！'
 		}
 		$.ajax({
 			type:'POST',
@@ -89,7 +93,8 @@ $(function(){
 			}
 		});
 	});
-	
+
+	//评价成功点击确定
 	$('#evaluation_success_ensure').on('click',function(){
 		$('#evaluationSuccessModal').modal('hide');
 		$('body').oneTime(500,function(){
@@ -126,7 +131,7 @@ function evaluation(buyTicketId){
 	$('#evaluation_stars').removeAttr('disabled');
 	$('#evaluation_content').removeAttr('readonly');
 	$('#evaluation_stars').val('5');
-	$('#evaluation_content').val('好评！');
+    $('#evaluation_content').val('');
 	$('#showEvaluationModal').modal('show');
 	$('#evaluationBuyTiekct').val(buyTicketId);
 }
