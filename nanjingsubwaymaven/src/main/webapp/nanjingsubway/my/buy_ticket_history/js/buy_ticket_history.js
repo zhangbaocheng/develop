@@ -123,6 +123,10 @@ function getRootPath(){
 //显示评价页面
 function evaluation(buyTicketId){
 	console.log('评价：'+buyTicketId);
+	$('#evaluation_stars').removeAttr('disabled');
+	$('#evaluation_content').removeAttr('readonly');
+	$('#evaluation_stars').val('5');
+	$('#evaluation_content').val('好评！');
 	$('#showEvaluationModal').modal('show');
 	$('#evaluationBuyTiekct').val(buyTicketId);
 }

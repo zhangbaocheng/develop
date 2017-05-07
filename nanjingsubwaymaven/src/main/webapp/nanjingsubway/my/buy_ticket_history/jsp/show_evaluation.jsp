@@ -26,7 +26,7 @@
 									      <option value="2">&nbsp;&nbsp;&nbsp;☆☆</option>
 									      <option value="3">&nbsp;&nbsp;☆☆☆</option>
 									      <option value="4">&nbsp;☆☆☆☆</option>
-									      <option value="5">☆☆☆☆☆</option>
+									      <option value="5" selected>☆☆☆☆☆</option>
 								</div>
 								<div class="form-group has-feedback">
 									<label class="col-sm-3 control-label">评价内容：</label>
