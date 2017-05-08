@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.nanjingsubway.subway_lines.dao.SubwayLinesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ public class SubwayLinesController {
 	
 	@Autowired
 	private SubwayLinesService subwayLinesService = null;
+
+	@Autowired
+	private SubwayLinesDao subwayLinesDao = null;
 	
 	
 	@RequestMapping("findSubwayLines")
@@ -202,5 +206,13 @@ public class SubwayLinesController {
 		return "";
 	}
 	*/
+
+	@RequestMapping("findSubwaySiteLike")
+	@ResponseBody
+	public List<SubwayLineSite> findSubwaySiteLike(String siteName){
+		List<SubwayLineSite> subwayLineSiteList = null;
+		subwayLineSiteList = subwayLinesDao.findSubwaySiteLike(siteName);
+		return subwayLineSiteList;
+	}
 		
 }

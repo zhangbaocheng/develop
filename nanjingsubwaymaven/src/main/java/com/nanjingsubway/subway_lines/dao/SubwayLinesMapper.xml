@@ -47,5 +47,11 @@
 			where line_number='${lineNumber}' 
 				and transfered_lines like '%${transfered_line}%';
 	</select>
+
+	<select id="findSubwaySiteLike" parameterType="java.lang.String" resultMap="SubwayLineSiteMap">
+		select * from view_subway_lines
+			where site_name like '%${siteName}%'
+
+	</select>
 	
 </mapper>

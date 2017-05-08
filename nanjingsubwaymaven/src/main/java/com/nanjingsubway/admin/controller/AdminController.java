@@ -19,7 +19,7 @@ public class AdminController {
     @Autowired
     private PassengerService passengerService;
 
-    @RequestMapping("admin")
+    @RequestMapping("index")
     public String admin(){
 
         return "admin/jsp/index";

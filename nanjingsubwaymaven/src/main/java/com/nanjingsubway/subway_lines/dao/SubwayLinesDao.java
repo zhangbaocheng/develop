@@ -15,4 +15,6 @@ public interface SubwayLinesDao {
 	
 	List<SubwayLineSite> findSiteByLineAndTransferedLine(
 			@Param("lineNumber")String lineNumber,@Param("transfered_line")String transfered_line);
+
+	List<SubwayLineSite> findSubwaySiteLike(@Param("siteName") String siteName);
 }

@@ -16,11 +16,15 @@
 	<div class="form-inline" style="margin:0 auto;">
 		<div class="form-group">
 			<label>出发站点</label>
-			<input type="text" id="siteStart" class="form-control" placeholder="请输入出发站点" value="南京站">
+			<%--<input type="text" id="siteStart" class="form-control" placeholder="请输入出发站点" value="南京站">--%>
+
+			<input type="text" id="siteStart" class="form-control startOrEndSite" placeholder="请输入出发站点">
+
 		</div>
 		<div class="form-group">
 			<label>到达站点</label>
-			<input type="text" id="siteEnd" class="form-control" placeholder="请输入到达站点" value="南京南站">
+			<%--<input type="text" id="siteEnd" class="form-control" placeholder="请输入到达站点" value="南京南站">--%>
+			<input type="text" id="siteEnd" class="form-control startOrEndSite" placeholder="请输入到达站点">
 		</div>
 		<div class="form-group">
 			<label>出发日期</label>

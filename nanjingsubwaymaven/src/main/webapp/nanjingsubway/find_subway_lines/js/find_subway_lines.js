@@ -19,7 +19,6 @@ $(function(){
 				'lineEnd':'s8'
 					
 		}
-//		console.log('asd');
 		$.ajax({
 			type:'POST',
 			url:getRootPath() + '/subwayLines/findLines',
@@ -42,8 +41,9 @@ $(function(){
 	});
 	
 	$('#select_routes').click(function(){
-		var siteStart = $('#siteStart').val();
-		var siteEnd = $('#siteEnd').val();
+
+		var siteStart = $('#siteStart').combobox('getValue');
+		var siteEnd = $('#siteEnd').combobox('getValue');
 		var obj = {
 				'siteStart':siteStart,
 				'siteEnd':siteEnd
@@ -180,6 +180,12 @@ $(function(){
 	//提醒尚未选择出发日期模态框点击确定
 	$('#remind_not_choose_start_time_ensure').click(function(){
 		$('#remindNotChooseStartTimeModal').modal('hide');
+	});
+
+	$('.startOrEndSite').combobox({
+		valueField:'siteName',
+		textField:'siteName',
+		url:getRootPath() + '/subwayLines/findSubwaySiteLike',
 	});
 	
 });
