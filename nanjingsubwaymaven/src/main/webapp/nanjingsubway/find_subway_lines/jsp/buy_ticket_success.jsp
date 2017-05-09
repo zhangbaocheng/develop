@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 </script>
 	<!-- 购票成功模态框 -->
 	<!-- 模态声明，show 表示显示 -->

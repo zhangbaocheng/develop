@@ -1,5 +1,8 @@
 package com.nanjingsubway.passenger.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Passenger {
@@ -11,6 +14,8 @@ public class Passenger {
 	private String phoneNumber = null;
 	private String nickName = null;
 	private String headImage = null;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
 	private Date registerTime = null;
 	public Integer getPassengerId() {
 		return passengerId;

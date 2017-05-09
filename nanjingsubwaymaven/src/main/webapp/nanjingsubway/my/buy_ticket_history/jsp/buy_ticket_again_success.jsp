@@ -1,5 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-</script>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<!-- 购票成功模态框 -->
 	<!-- 模态声明，show 表示显示 -->
 	<div class="modal fade" tabindex="-1" id="buyTicketAgainSuccessModal" >

@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<select id="selectPassengerAll" resultMap="passengerMap">
-		select * from passenger order by passenger_id DESC
+		select * from passenger order by passenger_id ASC
 	</select>
 	<select id="selectByName" resultMap="passengerMap" parameterType="java.lang.String">
 		select * from passenger where name = '${name}'

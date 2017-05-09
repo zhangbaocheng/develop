@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 	<!-- 提醒用户余额不足模态框 -->
 	<!-- 模态声明，show 表示显示 -->
 	<div class="modal fade" tabindex="-1" id="remindNotChooseStartTimeModal" >

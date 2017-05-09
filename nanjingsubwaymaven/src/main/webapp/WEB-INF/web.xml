@@ -52,8 +52,8 @@
 	    <servlet-name>default</servlet-name>    
 	    <url-pattern>/bootstrap-3.3.7-dist/*</url-pattern>    
 	    <url-pattern>/jquery-3.0.0/*</url-pattern>    
-	    <url-pattern>/onlinepawn/*</url-pattern>
 	    <url-pattern>/jquery.timers-1.1.2/*</url-pattern>
+		<url-pattern>/easyui/*</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

@@ -14,7 +14,7 @@ function getRootPath(){
 $(function(){
     var uri = getRootPath();
     $('#show_passenget_manage').datagrid({
-        width : 500,
+        width : 800,
         //url : 'content.json',
         url : uri + '/admin/showAllPassenger',
         title : '用户列表',
@@ -24,19 +24,48 @@ $(function(){
                 field : 'name',
                 title : '账号',
                 sortable : true,
+                width:120,
+            },
+            {
+                field:'nickName',
+                title:'昵称',
+                width:120,
+            },
+            {
+                field:'password',
+                title:'密码',
+                formatter:function(val){
+                    return '······';
+                },
+                width:120,
             },
             {
                 field : 'email',
                 title : '邮件',
                 sortable : true,
+                width:120,
                 //sorter : function (a,b) {
                 //console.log(a + '|' + b);
                 //},
             },
+            {
+                field:'phoneNumber',
+                title:'联系方式',
+                width:120,
+            },
+            {
+                field:'registerTime',
+                title:'注册时间',
+                formatter:function(value){
+                    var date = new Date(value);
+                    return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDay();
+                },
+                width:120,
+            }
         ]],
         pagination : true,
-        pageSize : 1,
-        pageList : [1, 2, 3],
+        pageSize : 5,
+        pageList : [5, 10, 15],
         pageNumber : 1,
         pagePosition : 'bottom',
         sortName : 'name',
@@ -48,8 +77,6 @@ $(function(){
             id : 1,
         }
     });
-
-
 
 });
 

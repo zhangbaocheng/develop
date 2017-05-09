@@ -1,5 +1,5 @@
-<%@page contentType="text/html; charset=UTF-8" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<!-- 注册成功模态框 -->
 	<!-- 模态声明，show 表示显示 -->
 	<div class="modal fade" tabindex="-1" id="registerSuccessModal" >

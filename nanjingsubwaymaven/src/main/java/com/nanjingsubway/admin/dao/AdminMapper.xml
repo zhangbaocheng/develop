@@ -3,5 +3,52 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.nanjingsubway.admin.dao.AdminDao">
 
+	<resultMap id="passengerMapper" autoMapping="true" type="com.nanjingsubway.passenger.model.Passenger">
+		<id column="passenger_id" property="passengerId"/>
+		<result column="id_number" property="idNumber"/>
+		<result column="name" property="name"/>
+		<result column="password" property="password"/>
+		<result column="email" property="email"/>
+		<result column="phone_number" property="phoneNumber"/>
+		<result column="nick_name" property="nickName"/>
+		<result column="head_image" property="headImage"/>
+		<result column="register_time" property="registerTime"/>
+	</resultMap>
+
+	<resultMap id="newsMapper" autoMapping="true" type="com.nanjingsubway.admin.model.News">
+		<id column="news_id" property="newsId"/>
+		<result column="news_theme" property="newsTheme"/>
+		<result column="news_content" property="newsContent"/>
+		<result column="news_release_date" property="newsReleaseDate"/>
+		<result column="news_date" property="newsDate"/>
+	</resultMap>
+
+
+	<select id="showAllPassenger" parameterType="java.util.Map" resultMap="passengerMapper">
+		select * from passenger order by passenger_id DESC
+			limit #{limit}
+			offset #{offset}
+	</select>
+
+	<select id="showAllNews" resultMap="newsMapper" parameterType="java.util.Map">
+		select * from news ORDER BY news_release_date DESC
+			limit #{limit}
+			offset #{offset}
+	</select>
+	<select id="selectNewsCount" resultType="java.lang.Integer">
+		select count(*) from news
+
+	</select>
+
+	<insert id="releaseNews" parameterType="java.util.Map">
+
+		INSERT INTO news(news_theme,news_content,news_date,news_release_date)
+		VALUES(
+			#{newsTheme},
+			#{newsContent},
+			#{newsDate,jdbcType=DATE},
+			#{newsReleaseDate,jdbcType=DATE}
+		)
+	</insert>
 	
 </mapper>

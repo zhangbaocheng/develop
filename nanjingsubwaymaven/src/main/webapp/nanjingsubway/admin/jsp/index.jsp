@@ -16,9 +16,10 @@
     <script src="easyui/js/easyui-lang-zh_CN.js"></script>
     <script src="bootstrap-3.3.7/js/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="easyui/css/easyui.css"/>
-    <link rel="stylesheet" href="easyui/css/icon.css"/>
     <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css"/>
+    <link rel="stylesheet" href="easyui/themes/default/easyui.css"/>
+    <link rel="stylesheet" href="easyui/themes/icon.css"/>
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 

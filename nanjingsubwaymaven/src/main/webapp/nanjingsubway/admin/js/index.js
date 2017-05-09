@@ -2,7 +2,7 @@ $(function(){
 
     /*点击活动管理*/
     $('#activity_manage').click(function(){
-
+        $('#content').load(getRootPath() + '/admin/showNews');
     });
 
     /*点击路线管理*/
