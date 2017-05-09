@@ -34,7 +34,7 @@ $(function(){
             {
                 field:'newsContent',
                 title:'活动内容',
-                width:120,
+                width:180,
             },
             {
                 field : 'newsReleaseDate',
