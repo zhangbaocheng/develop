@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2017-05-09 11:32:55
+Date: 2017-05-09 19:46:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news` (
-  `news_id` int(11) NOT NULL,
+  `news_id` int(11) NOT NULL AUTO_INCREMENT,
   `news_theme` varchar(255) DEFAULT NULL,
   `news_content` varchar(255) DEFAULT NULL,
   `news_release_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -37,15 +37,15 @@ CREATE TABLE `news` (
 -- ----------------------------
 DROP TABLE IF EXISTS `news_join_in`;
 CREATE TABLE `news_join_in` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `news_id` int(11) DEFAULT NULL,
   `passenger_id` int(11) DEFAULT NULL,
   `sign_up_date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `news_id` (`news_id`),
   KEY `passenger_id` (`passenger_id`),
-  CONSTRAINT `news_join_in_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`),
-  CONSTRAINT `news_join_in_ibfk_2` FOREIGN KEY (`passenger_id`) REFERENCES `passenger` (`passenger_id`)
+  KEY `news_id` (`news_id`),
+  CONSTRAINT `news_join_in_ibfk_2` FOREIGN KEY (`passenger_id`) REFERENCES `passenger` (`passenger_id`),
+  CONSTRAINT `news_join_in_ibfk_3` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -126,7 +126,7 @@ CREATE TABLE `passenger_buy_ticket` (
   `buy_date` datetime DEFAULT NULL,
   `passenger_id` int(11) DEFAULT NULL COMMENT '关联乘客表的passenger_id',
   `start_time` date DEFAULT NULL COMMENT '出发日期，以天为单位',
-  `is_used` varchar(255) DEFAULT NULL COMMENT '该票是否已经使用过',
+  `is_evaluation` varchar(255) DEFAULT NULL COMMENT '该票是否已经使用过',
   `lines_pass_by` varchar(255) DEFAULT NULL COMMENT '经过的线路，以路线图表的结构，中间以->分隔',
   `sites_number_pass_by` int(11) DEFAULT NULL COMMENT '经过的站点数',
   PRIMARY KEY (`buy_ticket_id`),
