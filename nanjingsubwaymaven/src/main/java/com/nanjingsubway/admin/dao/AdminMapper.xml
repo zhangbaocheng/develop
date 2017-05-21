@@ -23,6 +23,20 @@
 		<result column="news_date" property="newsDate"/>
 	</resultMap>
 
+	<resultMap id="SubwayLineSiteMapper" autoMapping="true" type="SubwayLineSite">
+		<id column="site_id" property="siteId"/>
+		<result column="id_number" property="idNumber"/>
+		<result column="site_number" property="siteNumber"/>
+		<result column="line_number" property="lineNumber"/>
+		<result column="site_name" property="siteName"/>
+		<result column="site_details" property="siteDetails"/>
+		<result column="transfered" property="transfered"/>
+		<result column="transfered_lines" property="transferedLines"/>
+		<result column="recharged" property="recharged"/>
+		<result column="toilet" property="toilet"/>
+	</resultMap>
+
+
 
 	<select id="showAllPassenger" parameterType="java.util.Map" resultMap="passengerMapper">
 		select * from passenger order by passenger_id DESC
@@ -50,5 +64,15 @@
 			#{newsReleaseDate,jdbcType=DATE}
 		)
 	</insert>
+
+	<select id="selectSitesCount" resultType="java.lang.Integer">
+		select count(*) from view_subway_lines
+	</select>
+
+	<select id="showAllSites" resultMap="SubwayLineSiteMapper">
+		select * from view_subway_lines
+			limit #{limit}
+			offset #{offset}
+	</select>
 	
 </mapper>

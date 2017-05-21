@@ -7,7 +7,7 @@ $(function(){
 
     /*点击路线管理*/
     $('#routes_manage').click(function(){
-
+        $('#content').load(getRootPath() + '/admin/showSites');
     });
 
     /*点击乘客管理*/

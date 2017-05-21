@@ -5,6 +5,7 @@ import com.nanjingsubway.admin.model.News;
 import com.nanjingsubway.admin.service.AdminService;
 import com.nanjingsubway.passenger.model.Passenger;
 import com.nanjingsubway.passenger.service.PassengerService;
+import com.nanjingsubway.subway_lines.model.SubwayLineSite;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,6 +80,23 @@ public class AdminController {
     public String releaseNews(News news){
 
         return adminService.releaseNews(news);
+    }
+
+    @RequestMapping("showSites")
+    public String showSites(){
+        return "admin/jsp/sites_manage";
+    }
+
+    @RequestMapping("/showAllSites")
+    @ResponseBody
+    public Map<String,Object> showAllSites(Integer page,Integer rows){
+        Map<String,Object> resultMap = new HashMap<>();
+        Integer sitesCount = adminDao.selectSitesCount();
+
+        resultMap.put("total",sitesCount);
+        resultMap.put("rows",adminService.showAllSites(page,rows));
+        System.out.print(resultMap);
+        return resultMap;
     }
 
 }

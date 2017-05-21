@@ -2,6 +2,7 @@ package com.nanjingsubway.admin.dao;
 
 import com.nanjingsubway.admin.model.News;
 import com.nanjingsubway.passenger.model.Passenger;
+import com.nanjingsubway.subway_lines.model.SubwayLineSite;
 
 import java.util.List;
 import java.util.Map;
@@ -18,4 +19,8 @@ public interface AdminDao {
     Integer selectNewsCount();
 
     Integer releaseNews(Map<String,Object> paramMap);
+
+    Integer selectSitesCount();
+
+    List<SubwayLineSite> showAllSites(Map<String,Object> paramMap);
 }

@@ -3,6 +3,7 @@ package com.nanjingsubway.admin.service;
 import com.nanjingsubway.admin.dao.AdminDao;
 import com.nanjingsubway.admin.model.News;
 import com.nanjingsubway.passenger.model.Passenger;
+import com.nanjingsubway.subway_lines.model.SubwayLineSite;
 import com.nanjingsubway.utils.NanjingSubwayUtils;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,13 @@ public class AdminService {
             return "error";
         }
     }
+
+    public List<SubwayLineSite> showAllSites(Integer page,Integer rows){
+        Map<String,Object> paramMap = new HashMap<>();
+        paramMap.put("limit",rows);
+        paramMap.put("offset",(page-1)*rows);
+        return adminDao.showAllSites(paramMap);
+    }
+
+
 }
